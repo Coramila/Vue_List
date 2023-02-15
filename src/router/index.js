@@ -7,12 +7,6 @@ const routes = [
     name: "home",
     component: HomeView,
   },
-  {
-    path: "/cadastro",
-    name: "Cadastro",
-    component: () =>
-      import(/* webpackChunkName: "cadastro" */ "../views/Cadastro.vue"),
-  },
 ];
 
 const router = createRouter({
