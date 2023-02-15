@@ -110,6 +110,7 @@ export default {
     border-radius: 15px;
     margin: auto;
 
+
 }
 
 .form {
@@ -128,7 +129,7 @@ export default {
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.3);
     padding: 0.5rem 1rem;
-    border-bottom: black;
+    border-bottom: 1px solid #DDDDDD;
     align-items: center;
 
 }

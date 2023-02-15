@@ -1,17 +1,23 @@
 <template>
   <div class="home">
-    <button @click="adicionarEmpresa($event)">Adicionar Empresa</button>
+    <div class="filtro">
+      <input type="text" placeholder="Buscar empresa...">
+    </div>
     <Form v-if="showForm" :showForm="showForm" @aoFecharAviso="closeForm" />
+    <button class="add-empresa" @click="adicionarEmpresa($event)">Adicionar Empresa</button>
+    <Lista />
   </div>
 </template>
 
 <script>
 
 import Form from '../components/Form.vue'
+import Lista from '@/components/Lista.vue';
 export default {
   name: "HomeView",
   components: {
     Form,
+    Lista,
   },
   data(props) {
     return {
@@ -36,7 +42,34 @@ export default {
 <style scoped>
 .home {
   background-color: #F7F7F7;
-  width: 100vw;
+  text-align: center;
+  /* width: 100%;*/
   height: 100vh;
+  padding: 2rem;
+  margin: 0 auto;
+
+}
+
+.filtro {
+  text-align: right;
+  padding-right: 3rem;
+  margin: 0 auto;
+
+}
+
+.add-empresa {
+  width: 95%;
+  height: 3.5rem;
+  margin: 0.75rem auto;
+  border: 1px solid #DDDDDD;
+  border-radius: 35px 4px 4px 35px;
+  color: #969696;
+  font-family: 'Jost';
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1.25px;
+  background: url("/public/img/NoteGray.svg") no-repeat;
+  background-position: left;
+  background-position-x: 0.5rem;
 }
 </style>
