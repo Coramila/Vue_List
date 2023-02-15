@@ -25,23 +25,18 @@
 
         <div class="input-container-btn">
           <div class="input-container-submit">
-            <button type="reset" class="reset-btn">
+            <button type="reset" class="reset-btn" @click="deletar" :disabled="!empresa">
               <img src="/img/Trash.svg" />
             </button>
             <div class="input-container-flex">
-              <input
-                type="button"
-                @click="closeForm"
-                class="cancel-btn"
-                value="Cancelar"
-              />
+              <input type="button" @click="closeForm" class="cancel-btn" value="Cancelar" />
               <input type="submit" class="submit-btn" value="Cadastrar" />
             </div>
           </div>
         </div>
       </form>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -49,8 +44,8 @@ import Message from "./Message.vue";
 
 export default {
   name: "Form",
-  props: { showForm: Boolean, empresa: Object },
-  emits: ["aoFecharAviso"],
+  props: { showForm: Boolean, empresa: Object, msg: String },
+  emits: ["aoFecharAviso", "aoDeletar", "aoSubmeterForm"],
   components: {
     Message,
   },
@@ -70,29 +65,13 @@ export default {
       const data = await req.json();
       console.log(data);
     },
-
-    async postEmpresa(e) {
+    postEmpresa(e) {
       e.preventDefault();
-      const data = {
+      this.$emit("aoSubmeterForm", {
         name: this.nome,
         cnpj: this.cnpj,
         email: this.email,
-      };
-      const dataJson = JSON.stringify(data);
-      const req = await fetch(
-        "https://homolog.planetasec.com.br/prova/front/api/clients",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: dataJson,
-        }
-      );
-      const res = await req.json();
-
-      this.msg = `Empresa ${res.name} cadastrada com sucesso`;
-      // console.log(res);
-
-      setTimeout(() => (this.msg = ""), 3000);
+      });
 
       this.nome = "";
       this.cnpj = "";
@@ -104,6 +83,9 @@ export default {
       this.email = "";
       this.$emit("aoFecharAviso");
     },
+    deletar() {
+      this.$emit("aoDeletar", this.empresa.id);
+    },
   },
   mounted() {
     this.getEmpresas();
@@ -113,6 +95,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 .background {
   position: fixed;
   left: 0;
@@ -121,6 +104,7 @@ export default {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
 .modal {
   position: absolute;
   width: 319px;
@@ -135,10 +119,12 @@ export default {
   left: 50%;
   transform: translateX(-50%);
 }
+
 .form {
   padding: 0 1.5rem 1.5rem 1.5rem;
   color: #630a37;
 }
+
 .form label {
   font-family: "Roboto";
   font-weight: 400;

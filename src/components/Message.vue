@@ -21,6 +21,9 @@ export default {
     border-radius: 5px;
     padding: 0.625rem; */
     max-width: 25rem;
+    font-size: 12px;
+    position: absolute;
+    padding-left: 1.5rem;
     /* margin: 1.875rem auto;
     text-align: center; */
 }
