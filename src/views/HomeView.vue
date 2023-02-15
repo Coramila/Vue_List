@@ -3,9 +3,9 @@
     <div class="filtro">
       <input type="text" placeholder="Buscar empresa...">
     </div>
-    <Form v-if="showForm" :showForm="showForm" @aoFecharAviso="closeForm" />
+    <Form v-if="showForm" :showForm="showForm" @aoFecharAviso="closeForm" :empresa="empresaSelecionada"/>
     <button class="add-empresa" @click="adicionarEmpresa($event)">Adicionar Empresa</button>
-    <Lista />
+    <Lista @onClick="openForm"/>
   </div>
 </template>
 
@@ -22,16 +22,22 @@ export default {
   data(props) {
     return {
       showForm: false,
+      empresaSelecionada: null
     }
   },
   methods: {
+    openForm (empresa) {
+      this.showForm = true
+      this.empresaSelecionada = empresa
+    },
     adicionarEmpresa(e) {
       e.preventDefault();
       console.log("FUI CLICADO")
       this.showForm = true
     },
     closeForm() {
-      this.showform = false
+      this.showForm = false
+      this.empresaSelecionada = null
       console.log('FUI FECHADO' + this.showform)
     }
   }

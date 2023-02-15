@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="empresa in empresas" :key="empresa.id">
+        <li v-for="empresa in empresas" :key="empresa.id" class="item" @click="() => onClick(empresa)">
             <div class="card-container">
                 <div class="card-info">
                     <p>{{ empresa.name }}</p>
@@ -40,6 +40,9 @@ export default {
             });
             const res = await req.json();
             this.getEmpresas();
+        },
+        onClick (empresa) {
+            this.$emit('onClick', empresa)
         }
     },
     mounted() {
@@ -49,6 +52,9 @@ export default {
 </script>
 
 <style scoped>
+.item {
+    cursor: pointer;
+}
 .card-container {
     display: flex;
     align-items: center;
