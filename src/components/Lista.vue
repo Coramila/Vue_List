@@ -9,6 +9,10 @@
                         <p>Email: {{ empresa.email }}</p>
                     </div>
                 </div>
+                <div class="card-btn">
+                    <button class="delete-btn" @click="deleteEmpresa(empresa.id)">Deletar</button>
+                    <button>Editar</button>
+                </div>
             </div>
         </li>
     </ul>
@@ -28,6 +32,14 @@ export default {
             const data = await req.json();
             this.empresas = data;
             console.log(this.empresas)
+        },
+        async deleteEmpresa(id) {
+
+            const req = await fetch(`https://homolog.planetasec.com.br/prova/front/api/clients?q=${id}`, {
+                method: "DELETE"
+            });
+            const res = await req.json();
+            this.getEmpresas();
         }
     },
     mounted() {
@@ -40,6 +52,7 @@ export default {
 .card-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 95%;
     height: 3.5rem;
     margin: 0.75rem auto;
@@ -62,5 +75,10 @@ export default {
 
 li {
     list-style: none;
+}
+
+.card-btn {
+    display: flex;
+    gap: 1rem;
 }
 </style>

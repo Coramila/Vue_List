@@ -122,6 +122,7 @@ export default {
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 12px;
+    text-align: left;
 }
 
 .form-top {
