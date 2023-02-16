@@ -1,8 +1,8 @@
 # Cadastro de Empresas (OPEA)
 
-Fluxo de listagem, cadastro, edição, busca e exclusão de empresas através de integração com API.
-Página responsiva.
-Implementação feita utilizando Vue.js
+- Fluxo de listagem, cadastro, edição, busca e exclusão de empresas através de integração com API.
+- Página responsiva.
+- Implementação feita utilizando Vue.js
 
 ## Como acessar a página:
 
