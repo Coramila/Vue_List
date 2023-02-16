@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <form class="filtro" @submit.prevent="getEmpresas">
-      <input type="text" placeholder="Buscar empresa..." required v-model="filtro" />
+      <input type="text" placeholder="Buscar empresa..." v-model="filtro" />
     </form>
 
     <Form v-if="showForm" :showForm="showForm" @aoFecharAviso="closeForm" @aoDeletar="deleteEmpresa"

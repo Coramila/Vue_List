@@ -12,15 +12,15 @@
       <form id="cadastro-form" @submit="postEmpresa">
         <div class="input-container">
           <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" v-model="nome" />
+          <input type="text" id="nome" name="nome" v-model="nome" required />
         </div>
         <div class="input-container">
           <label for="cnpj">CNPJ</label>
-          <input type="text" id="cnpj" name="cnpj" v-model="cnpj" />
+          <input type="text" id="cnpj" name="cnpj" v-model="cnpj" minlength="14" maxlength="14" required />
         </div>
         <div class="input-container">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" v-model="email" />
+          <input type="email" id="email" name="email" v-model="email" required />
         </div>
 
         <div class="input-container-btn">
@@ -63,7 +63,6 @@ export default {
         "https://homolog.planetasec.com.br/prova/front/api/clients"
       );
       const data = await req.json();
-      console.log(data);
     },
     postEmpresa(e) {
       e.preventDefault();
