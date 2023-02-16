@@ -54,7 +54,6 @@ export default {
         }
       );
       this.closeForm();
-      this.getEmpresas();
     },
     openForm(empresa) {
       this.showForm = true;
@@ -67,6 +66,7 @@ export default {
     closeForm() {
       this.showForm = false;
       this.empresaSelecionada = null;
+      this.getEmpresas();
     },
     async salvarEmpresa(empresa) {
       if (this.empresaSelecionada) {
@@ -91,7 +91,6 @@ export default {
         this.msg = `Empresa ${res.name} cadastrada com sucesso`;
       }
       this.closeForm();
-      this.getEmpresas();
     },
   },
 };
