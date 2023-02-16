@@ -191,6 +191,11 @@ export default {
   padding: 8px 12px;
   background-color: #ffffff;
   cursor: pointer;
+  transition: 15ms;
+}
+
+.reset-btn:hover {
+  border-color: #630a37;
 }
 
 .cancel-btn {
@@ -202,6 +207,11 @@ export default {
   padding: 8px 12px;
   background-color: #ffffff;
   cursor: pointer;
+  transition: 15ms;
+}
+
+.cancel-btn:hover {
+  border-color: #630a37;
 }
 
 .submit-btn {
@@ -213,5 +223,10 @@ export default {
   padding: 8px 12px;
   border: none;
   cursor: pointer;
+  transition: 15ms;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
 }
 </style>

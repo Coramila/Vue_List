@@ -3,12 +3,14 @@
     <form class="filtro" @submit.prevent="getEmpresas">
       <input type="text" placeholder="Buscar empresa..." required v-model="filtro" />
     </form>
+
     <Form v-if="showForm" :showForm="showForm" @aoFecharAviso="closeForm" @aoDeletar="deleteEmpresa"
       @aoSubmeterForm="salvarEmpresa" :empresa="empresaSelecionada" />
     <button class="add-empresa" @click="adicionarEmpresa($event)">
       Adicionar Empresa
     </button>
     <Lista @onClick="openForm" :empresas="empresas" />
+
 </div>
 </template>
 
@@ -107,8 +109,8 @@ export default {
 
 .filtro {
   text-align: right;
-  padding-right: 3rem;
   margin: 0 auto;
+  width: 95%;
 }
 
 .filtro input {
@@ -124,7 +126,6 @@ export default {
 }
 
 .filtro input::placeholder {
-
   font-weight: 400;
   font-size: 14px;
 }
@@ -143,5 +144,17 @@ export default {
   background: url("/public/img/NoteGray.svg") no-repeat;
   background-position: left;
   background-position-x: 0.5rem;
+  transition: 15ms;
+}
+
+.add-empresa:hover {
+  border: 2px solid #630A37;
+  color: #630A37;
+}
+
+@media (max-width: 768px) {
+  .filtro {
+    text-align: center;
+  }
 }
 </style>

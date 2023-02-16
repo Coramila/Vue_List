@@ -6,7 +6,7 @@
           <p>{{ empresa.name }}</p>
           <div class="card-detalhe">
             <p>CNPJ: {{ empresa.cnpj }}</p>
-            <p class="hífen"> - </p>
+            <p class="hifen"> - </p>
             <p>Email: {{ empresa.email }}</p>
           </div>
         </div>
@@ -45,6 +45,11 @@ export default {
   background-color: #FFFFFF;
   background-position: left;
   background-position-x: 0.5rem;
+  transition: 15ms;
+}
+
+.card-container:hover {
+  background-color: rgba(193, 157, 175, 0.507)
 }
 
 .card-info {
@@ -56,7 +61,7 @@ export default {
   line-height: 20px;
 }
 
-.hífen {
+.hifen {
   padding: 0 0.375rem;
 }
 
@@ -71,5 +76,20 @@ li {
 .card-btn {
   display: flex;
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card-detalhe {
+    flex-direction: column;
+  }
+
+  .hifen {
+    display: none;
+  }
+
+  .card-container {
+    height: fit-content;
+  }
+
 }
 </style>
