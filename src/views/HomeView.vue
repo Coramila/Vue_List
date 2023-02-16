@@ -42,7 +42,7 @@ export default {
       const req = await fetch(url);
       const data = await req.json();
       this.empresas = data;
-      console.log(this.empresas);
+
     },
     async deleteEmpresa(id) {
       const req = await fetch(
@@ -109,6 +109,24 @@ export default {
   text-align: right;
   padding-right: 3rem;
   margin: 0 auto;
+}
+
+.filtro input {
+  width: 281px;
+  height: 28px;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  background: url("/public/img/search.svg") no-repeat;
+  background-color: #FFFFFF;
+  background-position: right;
+  background-position-x: 16rem;
+  padding: 0.888rem;
+}
+
+.filtro input::placeholder {
+
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .add-empresa {
