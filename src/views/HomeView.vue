@@ -11,12 +11,13 @@
     </button>
     <Lista @onClick="openForm" :empresas="empresas" />
 
-</div>
+  </div>
 </template>
 
 <script>
 import Form from "../components/Form.vue";
 import Lista from "@/components/Lista.vue";
+import axios from 'axios'
 export default {
   name: "HomeView",
   components: {
@@ -34,27 +35,34 @@ export default {
   mounted() {
     this.getEmpresas();
   },
+  watch: {
+    filtro: function (novoFiltro) {
+      if (novoFiltro === '') {
+        this.getEmpresas();
+      }
+    }
+  },
+
   methods: {
+
     async getEmpresas() {
       let url = "https://homolog.planetasec.com.br/prova/front/api/clients";
       if (this.filtro) {
         url += '?text=' + this.filtro
       }
 
-      const req = await fetch(url);
-      const data = await req.json();
-      this.empresas = data;
-
+      const res = await axios.get(url);
+      this.empresas = res.data;
     },
+
+
     async deleteEmpresa(id) {
-      const req = await fetch(
-        `https://homolog.planetasec.com.br/prova/front/api/clients/${id}`,
-        {
-          method: "DELETE",
-        }
+      const res = await axios.delete(
+        `https://homolog.planetasec.com.br/prova/front/api/clients/${id}`
       );
       this.closeForm();
     },
+
     openForm(empresa) {
       this.showForm = true;
       this.empresaSelecionada = empresa;
@@ -70,25 +78,17 @@ export default {
     },
     async salvarEmpresa(empresa) {
       if (this.empresaSelecionada) {
-        const req = await fetch(
+        const res = await axios.put(
           `https://homolog.planetasec.com.br/prova/front/api/clients/${this.empresaSelecionada.id}`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(empresa),
-          }
+          empresa
         );
-        this.msg = `Empresa ${res.name} cadastrada com sucesso`;
+        this.msg = `Empresa ${res.data.name} cadastrada com sucesso`;
       } else {
-        const req = await fetch(
+        const res = await axios.post(
           "https://homolog.planetasec.com.br/prova/front/api/clients",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(empresa),
-          }
+          empresa
         );
-        this.msg = `Empresa ${res.name} cadastrada com sucesso`;
+        this.msg = `Empresa ${res.data.name} cadastrada com sucesso`;
       }
       this.closeForm();
     },

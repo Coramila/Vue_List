@@ -36,11 +36,12 @@
         </div>
       </form>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 import Message from "./Message.vue";
+import axios from 'axios'
 
 export default {
   name: "Form",
@@ -59,10 +60,9 @@ export default {
   },
   methods: {
     async getEmpresas() {
-      const req = await fetch(
-        "https://homolog.planetasec.com.br/prova/front/api/clients"
-      );
-      const data = await req.json();
+      let url = "https://homolog.planetasec.com.br/prova/front/api/clients"
+      const res = await axios.get(url);
+      this.empresas = res.data;
     },
     postEmpresa(e) {
       e.preventDefault();
